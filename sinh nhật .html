@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎉 Sinh Nhật Quang Vinh - 16/5 🎂</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;900&display=swap');
+    
+    body {
+      margin: 0; padding: 0; height: 100vh;
+      background: linear-gradient(135deg, #ff006e, #fb5607, #ffbe0b, #8338ec);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .container {
+      z-index: 2;
+      position: relative;
+    }
+
+    h1 { 
+      font-size: 3.2rem; 
+      margin: 8px 0; 
+      text-shadow: 0 0 25px rgba(0,0,0,0.5);
+      font-weight: 900;
+    }
+
+    .name { 
+      font-size: 5.2rem; 
+      margin: 15px 0; 
+      animation: glow 2s infinite alternate;
+      background: linear-gradient(to right, #fff, #ffbe0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .teaser { 
+      font-size: 2.4rem; 
+      margin: 40px 0 30px 0;
+      font-weight: 700;
+    }
+
+    .info {
+      font-size: 1.6rem;
+      opacity: 0.95;
+      margin: 12px 0;
+    }
+
+    button {
+      margin-top: 40px; 
+      padding: 18px 60px; 
+      font-size: 1.6rem;
+      background: white; 
+      color: #ff006e; 
+      border: none; 
+      border-radius: 50px;
+      font-weight: bold; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+
+    @keyframes glow { 
+      from { text-shadow: 0 0 20px #fff; } 
+      to { text-shadow: 0 0 50px #fff, 0 0 80px #ffbe0b; } 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Phần teaser -->
+    <div id="teaser">
+      <h1>❤️ Hôm nay có chuyện lớn lắm...</h1>
+      <p class="teaser">Bấm vào màn hình đi bro 🔥</p>
+    </div>
+
+    <!-- Phần reveal -->
+    <div id="reveal" style="display: none;">
+      <h1>🎉🎂🎉</h1>
+      <h1>HÔM NAY LÀ</h1>
+      <h1 style="font-size: 4.8rem; margin: 10px 0;">SINH NHẬT</h1>
+      <h1 class="name">QUANG VINH</h1>
+      
+      <p class="info">16 / 5 </p>
+      
+      <p style="font-size: 1.85rem; margin: 25px 0; max-width: 700px; margin-left: auto; margin-right: auto;">
+        Cảm ơn vì đã đồng hành cùng tao từ Cẩm Phang ra thế giới này ❤️<br>
+        Chúc mừng sinh nhật tuổi mới, bro!
+      </p>
+
+      <button onclick="window.location.reload()">Chơi lại từ đầu</button>
+    </div>
+  </div>
+
+  <canvas id="confetti" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    function launchConfetti() {
+      confetti({
+        particleCount: 180,
+        spread: 90,
+        origin: { y: 0.6 }
+      });
+    }
+
+    // Tự động bắn confetti
+    setInterval(() => {
+      launchConfetti();
+    }, 800);
+
+    // Click để reveal
+    document.body.addEventListener('click', () => {
+      const teaser = document.getElementById('teaser');
+      const reveal = document.getElementById('reveal');
+      
+      if (teaser.style.display !== 'none') {
+        teaser.style.transition = "opacity 0.5s";
+        teaser.style.opacity = "0";
+        
+        setTimeout(() => {
+          teaser.style.display = 'none';
+          reveal.style.display = 'block';
+          
+          // Bắn confetti mạnh khi reveal
+          for(let i = 0; i < 10; i++) {
+            setTimeout(launchConfetti, i * 120);
+          }
+        }, 500);
+      }
+    });
+
+    // Bắn confetti ngay khi load
+    setTimeout(() => {
+      launchConfetti();
+    }, 300);
+  </script>
+</body>
+</html>
